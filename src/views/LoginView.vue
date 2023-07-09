@@ -1,20 +1,27 @@
 <template>
     <section>
-        <form action="" method="post" class="form">
+        <form @submit="toLogin" method="post" class="form">
             <div class="md-5 form-title">
                 <h2>Welcome🙂</h2>
             </div>
             <div class="form-group">
                 <label for="">Login</label>
-                <input type="text" name="login" id="login" class="form-control" placeholder="Login"
+                <input type="email" v-model="login" required name="login" id="login" class="form-control" placeholder="Login with your email"
                     aria-describedby="helpId">
             </div>
             <div class="form-group">
                 <label for="">Password</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Password"
+                <input type="password" v-model="password" required name="password" id="password" class="form-control" placeholder="Password"
                     aria-describedby="helpId">
             </div>
-            <div class="mt-4">
+            <div class="form-group col-12 mt-3">
+                <label class="form-check-label">
+                    <input type="checkbox" v-model="rememberMe" class="form-check-input" name="" id=""
+                        value="checkedValue" checked>
+                    Remember me!
+                </label>
+            </div>
+            <div class="mt-3">
                 <button type="submit" class="btn btn-primary">Submit</button>
             </div>
             <div class="mt-4 row">
@@ -34,6 +41,18 @@
 </template>
 <script>
 export default {
+    data() {
+        return {
+            login: '',
+            password: '',
+            rememberMe: false,
+        }
+    },
+    methods: {
+        toLogin(e) {
+            e.preventDefault()
+        }
+    }
 
 }
 </script>

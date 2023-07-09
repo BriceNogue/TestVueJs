@@ -53,7 +53,7 @@
             <div class="mt-4 row">
                 <div class="col-9">
                     <a>
-                        <router-link to="sign_in">Don't have an acount?</router-link>
+                        <router-link to="login">Already have an acount?</router-link>
                     </a>
                 </div>
                 <div class="col-3">
