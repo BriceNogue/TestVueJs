@@ -14,6 +14,8 @@ Vue.use(PiniaVuePlugin);
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
+Vue.prototype.$usersList = [];
+
 new Vue({
   router,
   pinia: createPinia(),

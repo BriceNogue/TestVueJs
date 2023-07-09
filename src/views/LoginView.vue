@@ -48,6 +48,11 @@ export default {
             rememberMe: false,
         }
     },
+
+    mounted() {
+        
+    },
+
     methods: {
         toLogin(e) {
             e.preventDefault()

@@ -1,5 +1,16 @@
-<script setup>
-
+<script>
+export default {
+  mounted() {
+    if (localStorage.getItem('users')) {
+      try {
+        this.$usersList = JSON.parse(localStorage.getItem('users'));
+      } catch (e) {
+        localStorage.removeItem('users');
+      }
+    }
+    console.log(this.$usersList)
+  }
+}
 </script>
 
 <template>
@@ -7,8 +18,8 @@
     <header>
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
         <a class="navbar-brand" href="#">TestVue2</a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId" aria-controls="collapsibleNavId"
-            aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+          aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
@@ -33,6 +44,4 @@
   </div>
 </template>
 
-<style scoped>
-
-</style>
+<style scoped></style>
