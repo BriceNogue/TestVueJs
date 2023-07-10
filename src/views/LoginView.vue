@@ -1,12 +1,12 @@
 <template>
     <section>
-        <div class="connected" v-if="this.isConnected">
+        <div class="connected" v-if="store.isConnected">
             <div class="alert alert-primary" role="alert">
                 <h1>Your are connected</h1>
             </div>
             <button type="button" class="btn btn-danger">Logout</button>
         </div>
-        <form @submit="toLogin" method="post" class="form" v-if="!this.isConnected">
+        <form @submit="toLogin" method="post" class="form" v-if="!store.isConnected">
             <div class="md-5 form-title">
                 <h2>Welcome🙂</h2>
             </div>
@@ -52,6 +52,7 @@ export default {
         return {
             login: '',
             password: '',
+            store: store,
             rememberMe: false,
             users: [],
             isConnected: false,
