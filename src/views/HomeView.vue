@@ -1,7 +1,8 @@
 <script>
+import { store } from '../stores/store';
 export default {
   mounted() {
-    console.log('Home: ',this.$isConnected);
+    console.log('Home: ', store.isConnected);
   }
 }
 </script>

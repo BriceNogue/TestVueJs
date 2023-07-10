@@ -23,7 +23,7 @@ export default {
         localStorage.removeItem('connectedUser');
       }
     }
-    this.getStat();
+    //this.getStat();
   },
 
   /*computed: {
@@ -40,19 +40,20 @@ export default {
     logout(e) {
       localStorage.removeItem('connectedUser');
       console.log('Logout...');
-      this.getStat();
+      store.isConnected = false;
+      //this.getStat();
       e.preventDefault();
     },
 
-    getStat() {
+    /*getStat() {
       if (localStorage.getItem('connectedUser')) {
         store.isConnected = true;
-        //this.isCon = true;
+        this.isCon = true;
       }else {
         store.isConnected = false;
-        //this.isCon = false;
+        this.isCon = false;
       }
-    }
+    }*/
   }
 }
 </script>

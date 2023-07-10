@@ -46,6 +46,7 @@
     </section>
 </template>
 <script>
+import { store } from '../stores/store';
 export default {
     data() {
         return {
@@ -69,7 +70,7 @@ export default {
         if (localStorage.getItem('connectedUser')) {
             try {
                 this.$connectedUser = JSON.parse(localStorage.getItem('connectedUser'));
-                this.isConnected = true
+                store.isConnected = true
             } catch (e) {
                 localStorage.removeItem('connectedUser');
             }
@@ -84,7 +85,7 @@ export default {
                     this.$connectedUser = user;
                     const parsed = JSON.stringify(user);
                     localStorage.setItem('connectedUser', parsed);
-                    this.$isConnected = true;
+                    store.isConnected = true;
                     alert('Connection succesfuly 😉')
                     console.log('Connected User: ', this.$connectedUser.firstname);
                     this.$router.push('/')
