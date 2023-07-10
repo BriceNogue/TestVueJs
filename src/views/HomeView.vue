@@ -1,4 +1,9 @@
-<script setup>
+<script>
+export default {
+  mounted() {
+    console.log('Home: ',this.$isConnected);
+  }
+}
 </script>
 
 <template>

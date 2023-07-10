@@ -1,5 +1,13 @@
 <script>
+import { store } from'./stores/store.js';
 export default {
+  data() {
+    return {
+      //isCon: false,
+      store: store,
+    }
+  },
+
   mounted() {
     if (localStorage.getItem('users')) {
       try {
@@ -8,7 +16,43 @@ export default {
         localStorage.removeItem('users');
       }
     }
-    console.log(this.$usersList)
+    if (localStorage.getItem('connectedUser')) {
+      try {
+        this.$connectedUser = JSON.parse(localStorage.getItem('connectedUser'));
+      } catch (e) {
+        localStorage.removeItem('connectedUser');
+      }
+    }
+    this.getStat();
+  },
+
+  /*computed: {
+    isConnected() {
+      if(this.isCon) {
+        return true;
+      }else {
+        return false;
+      }
+    }
+  },*/
+
+  methods: {
+    logout(e) {
+      localStorage.removeItem('connectedUser');
+      console.log('Logout...');
+      this.getStat();
+      e.preventDefault();
+    },
+
+    getStat() {
+      if (localStorage.getItem('connectedUser')) {
+        store.isConnected = true;
+        //this.isCon = true;
+      }else {
+        store.isConnected = false;
+        //this.isCon = false;
+      }
+    }
   }
 }
 </script>
@@ -30,11 +74,17 @@ export default {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link">
+              <a class="nav-link" v-if="!store.isConnected" @click.prevent="getStat">
                 <router-link to="login">Login</router-link>
+              </a>
+              <a class="nav-link" v-else @click.prevent="logout">
+                <router-link to="login">Logout</router-link>
               </a>
             </li>
           </ul>
+        </div>
+        <div class="profil">
+          <h2>{{ $connectedUser.fistname }}</h2>
         </div>
       </nav>
     </header>

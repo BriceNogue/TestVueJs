@@ -1,23 +1,29 @@
 <template>
     <section>
-        <form @submit="toLogin" method="post" class="form">
+        <div class="connected" v-if="this.isConnected">
+            <div class="alert alert-primary" role="alert">
+                <h1>Your are connected</h1>
+            </div>
+            <button type="button" class="btn btn-danger">Logout</button>
+        </div>
+        <form @submit="toLogin" method="post" class="form" v-if="!this.isConnected">
             <div class="md-5 form-title">
                 <h2>Welcome🙂</h2>
             </div>
             <div class="form-group">
                 <label for="">Login</label>
-                <input type="email" v-model="login" required name="login" id="login" class="form-control" placeholder="Login with your email"
-                    aria-describedby="helpId">
+                <input type="email" v-model="login" required name="login" id="login" class="form-control"
+                    placeholder="Login with your email" aria-describedby="helpId">
             </div>
             <div class="form-group">
                 <label for="">Password</label>
-                <input type="password" v-model="password" required name="password" id="password" class="form-control" placeholder="Password"
-                    aria-describedby="helpId">
+                <input type="password" v-model="password" required name="password" id="password" class="form-control"
+                    placeholder="Password" aria-describedby="helpId">
             </div>
             <div class="form-group col-12 mt-3">
                 <label class="form-check-label">
-                    <input type="checkbox" v-model="rememberMe" class="form-check-input" name="" id=""
-                        value="checkedValue" checked>
+                    <input type="checkbox" v-model="rememberMe" class="form-check-input" name="" id="" value="checkedValue"
+                        checked>
                     Remember me!
                 </label>
             </div>
@@ -46,17 +52,48 @@ export default {
             login: '',
             password: '',
             rememberMe: false,
+            users: [],
+            isConnected: false,
         }
     },
 
     mounted() {
-        
+        if (localStorage.getItem('users')) {
+            try {
+                this.users = JSON.parse(localStorage.getItem('users'));
+            } catch (e) {
+                localStorage.removeItem('users');
+            }
+        }
+        console.log(this.users);
+        if (localStorage.getItem('connectedUser')) {
+            try {
+                this.$connectedUser = JSON.parse(localStorage.getItem('connectedUser'));
+                this.isConnected = true
+            } catch (e) {
+                localStorage.removeItem('connectedUser');
+            }
+            console.log('Connected: ', this.$connectedUser);
+        }
     },
 
     methods: {
         toLogin(e) {
+            this.users.forEach(user => {
+                if (user.email === this.login && user.password === this.password) {
+                    this.$connectedUser = user;
+                    const parsed = JSON.stringify(user);
+                    localStorage.setItem('connectedUser', parsed);
+                    this.$isConnected = true;
+                    alert('Connection succesfuly 😉')
+                    console.log('Connected User: ', this.$connectedUser.firstname);
+                    this.$router.push('/')
+                } else {
+                    console.log('Bad request!');
+                }
+            });
             e.preventDefault()
-        }
+        },
     }
 
 }

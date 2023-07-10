@@ -15,6 +15,8 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 
 Vue.prototype.$usersList = [];
+Vue.prototype.$connectedUser = {};
+Vue.prototype.$isConnected = false;
 
 new Vue({
   router,
