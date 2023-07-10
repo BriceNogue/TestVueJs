@@ -1,14 +1,94 @@
 <script>
 import { store } from '../stores/store';
+
+import ProductCard from "../components/ProductCard.vue";
 export default {
+  data() {
+    return {
+      store: store,
+      products: store.products,
+    }
+  },
+  components: {
+    ProductCard
+  },
   mounted() {
-    console.log('Home: ', store.isConnected);
-  }
+    console.log('Home: ', this.products);
+  },
 }
 </script>
 
 <template>
   <main>
-    <h1>Home</h1>
+    <div class="card card-1">
+      <div class="col-6 card-action">
+        <div class="col-12">
+          <h1>Welcome {{ store.connectedUser.firstname }} 🙂</h1>
+        </div>
+        <div class="col-12">
+          <button type="button" class="btn btn-get btn-primary">Get your first gift</button>
+        </div>
+      </div>
+      <div class="col-6">
+        <img class="card-image" src="../assets/images/svg/undraw_gift_re_qr17.svg" alt="">
+      </div>
+    </div>
+
+    <div class="form-group search">
+      <div class="col-8">
+        <label for="">Search</label>
+        <input type="search" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Search product">
+      </div>
+      <div class="col-2 nbr-prod">
+        <b-icon icon="search" aria-hidden="true"></b-icon>
+        <h5>Products</h5>
+      </div>
+    </div>
+
+    <div>
+      <product-card></product-card>
+    </div>
   </main>
 </template>
+
+<style scoped>
+main {
+  padding: 7%;
+}
+.card-1 {
+  padding: 0 10px 10px 10px;
+  flex-direction: row;
+  box-shadow: 0 0 5px 0 grey;
+}
+
+.card-action {
+  padding: 10% 0 0 5%;
+}
+
+.btn-get {
+  width: 90%;
+  border-radius: 50px;
+  transition: ease 0.5s;
+}
+
+.btn-get:hover {
+  scale: 1.1;
+}
+
+.card-image {
+  width: 100%;
+}
+.search {
+  padding-top: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.nbr-prod {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+</style>

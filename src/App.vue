@@ -1,5 +1,5 @@
 <script>
-import { store } from'./stores/store.js';
+import { store } from './stores/store.js';
 export default {
   data() {
     return {
@@ -11,18 +11,19 @@ export default {
   mounted() {
     if (localStorage.getItem('users')) {
       try {
-        this.$usersList = JSON.parse(localStorage.getItem('users'));
+        store.usersList = JSON.parse(localStorage.getItem('users'));
       } catch (e) {
         localStorage.removeItem('users');
       }
     }
     if (localStorage.getItem('connectedUser')) {
       try {
-        this.$connectedUser = JSON.parse(localStorage.getItem('connectedUser'));
+        store.connectedUser = JSON.parse(localStorage.getItem('connectedUser'));
       } catch (e) {
         localStorage.removeItem('connectedUser');
       }
     }
+    console.log('Userrrr', store.connectedUser.firstname);
     //this.getStat();
   },
 
@@ -41,6 +42,7 @@ export default {
       localStorage.removeItem('connectedUser');
       console.log('Logout...');
       store.isConnected = false;
+      store.connectedUser = '';
       //this.getStat();
       e.preventDefault();
     },
@@ -75,7 +77,7 @@ export default {
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" v-if="!store.isConnected" @click.prevent="getStat">
+              <a class="nav-link" v-if="!store.isConnected">
                 <router-link to="login">Login</router-link>
               </a>
               <a class="nav-link" v-else @click.prevent="logout">
@@ -84,8 +86,16 @@ export default {
             </li>
           </ul>
         </div>
+        <div class="cart">
+          <div>
+            <b-icon icon="cart"></b-icon>
+          </div>
+          <div class="cart-number">
+            <p>0</p>
+          </div>
+        </div>
         <div class="profil">
-          <h2>{{ $connectedUser.fistname }}</h2>
+          <h2>{{ store.connectedUser.firstname }}</h2>
         </div>
       </nav>
     </header>
@@ -95,4 +105,45 @@ export default {
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+nav {
+  padding: 0 7% 0 7%;
+}
+.cart {
+  position: relative;
+}
+.b-icon  {
+  margin-right: 30px;
+  width: 35px;
+  height: 35px;
+  padding: 7px;
+  border-radius: 50px;
+  background: blue;
+  color: white;
+  transition: ease 0.5s;
+}
+
+.cart:hover {
+  scale: 1.1;
+}
+
+.cart-number {
+  width: 20px;
+  height: 20px;
+  border-radius: 50px;
+  position: absolute;
+  bottom: -1px;
+  left: -10px;
+}
+.cart-number p {
+  background-color: blue;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50px;
+  display: flex;
+  color: white;
+}
+</style>
