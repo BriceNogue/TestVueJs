@@ -5,6 +5,7 @@ export const store = reactive({
     isConnected: false,
     usersList: [],
     connectedUser: '',
+    cart: [],
     products: [
         {
             id: 0,
@@ -18,7 +19,7 @@ export const store = reactive({
             id: 1,
             pName: 'Iphone 13',
             price: 350000,
-            qStock: 5,
+            qStock: 0,
             picture: '',
             description: 'Lorem Ipsum'
         },
@@ -50,7 +51,7 @@ export const store = reactive({
             id: 5,
             pName: 'Ps5 Joystick',
             price: 35000,
-            qStock: 12,
+            qStock: 0,
             picture: '',
             description: 'Lorem Ipsum'
         },

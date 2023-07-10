@@ -91,7 +91,7 @@ export default {
             <b-icon icon="cart"></b-icon>
           </div>
           <div class="cart-number">
-            <p>0</p>
+            <p>{{ store.cart.length }}</p>
           </div>
         </div>
         <div class="profil">

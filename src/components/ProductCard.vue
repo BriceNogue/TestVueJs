@@ -7,7 +7,7 @@
             <div class="card-body">
                 <img class="card-img" src="../assets/logo.svg" alt="Card image cap">
                 <div class="card-actions">
-                    <b-button size="sm" class="mb-2" variant="primary">
+                    <b-button size="sm" class="mb-2" variant="primary" v-on:click.prevent="buyProduct(product)">
                         <b-icon icon="cash-coin" aria-hidden="true"></b-icon> Bey Now
                     </b-button>
                     <b-button size="sm" class="mb-2" variant="primary" @click.prevent="addToCart(product)">
@@ -15,8 +15,13 @@
                     </b-button>
                 </div>
             </div>
-            <div class="card-footer">
-                <h5>{{ product.price }}</h5>
+            <div class="card-footer" :class="{ outOfStock: product.qStock == 0 }">
+                <div>
+                    <h5>{{ product.price }}</h5>
+                </div>
+                <div>
+                    <h5>{{ product.qStock }} P</h5>
+                </div>
             </div>
         </div>
     </div>
@@ -30,28 +35,48 @@ export default {
     data() {
         return {
             store: store,
+            isOutOfStock: false,
         }
     },
     methods: {
         addToCart(product) {
-            console.log(product);
+            if (product.qStock > 0) {
+                store.cart.push(product)
+            } else {
+                alert(product.pName + " is out of stock!");
+            }
+        },
+        buyProduct(product) {
+            if (product.qStock > 0) {
+                alert("Buy: " + product.pName);
+            } else {
+                alert(product.pName + " is out of stock!");
+            }
         }
+    },
+    mounted() {
+        console.log(store.cart);
     }
 }
 </script>
 
 <style scoped>
 .products {
-  padding-top: 5%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+    padding-top: 5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
+
 .card {
     width: 30%;
     margin-bottom: 2rem;
     box-shadow: 0 0 5px 0 grey;
     transition: ease 0.5s;
+}
+
+.outOfStock {
+    background: rgb(241, 67, 67);
 }
 
 .bi {
@@ -75,6 +100,11 @@ export default {
     padding: 5px 15px 5px 15px;
 }
 
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+}
+
 .card:hover {
     scale: 1.1;
 
@@ -93,5 +123,4 @@ export default {
     .card-img {
         display: block;
     }
-}
-</style>
+}</style>
