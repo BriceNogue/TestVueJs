@@ -4,7 +4,7 @@
             <div class="alert alert-primary" role="alert">
                 <h1>Your are connected</h1>
             </div>
-            <button type="button" class="btn btn-danger">Logout</button>
+            <button type="button" class="btn btn-danger" @click="logout">Logout</button>
         </div>
         <form @submit="toLogin" method="post" class="form" v-if="!store.isConnected">
             <div class="md-5 form-title">
@@ -83,18 +83,24 @@ export default {
         toLogin(e) {
             this.users.forEach(user => {
                 if (user.email === this.login && user.password === this.password) {
-                    this.$connectedUser = user;
+                    store.connectedUser = user;
                     const parsed = JSON.stringify(user);
                     localStorage.setItem('connectedUser', parsed);
                     store.isConnected = true;
                     alert('Connection succesfuly 😉')
-                    console.log('Connected User: ', this.$connectedUser.firstname);
                     this.$router.push('/')
                 } else {
                     console.log('Bad request!');
                 }
             });
             e.preventDefault()
+        },
+        logout(e) {
+            localStorage.removeItem('connectedUser');
+            console.log('Logout...');
+            store.isConnected = false;
+            store.connectedUser = '';
+            e.preventDefault();
         },
     }
 
