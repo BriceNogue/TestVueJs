@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="col-6">
-          <img class="card-image" src="../assets/images/svg/undraw_gift_re_qr17.svg" alt="">
+          <img class="card-image" src="@/assets/images/svg/undraw_gift_re_qr17.svg" alt="">
         </div>
       </div>
 
@@ -23,10 +23,10 @@
 </template>
 
 <script>
-import LayoutDefault from '../layouts/LayoutDefault.vue';
-import { store } from '../stores/store';
+import LayoutDefault from '@/layouts/LayoutDefault.vue';
+import { store } from '@/stores/store';
 
-import ProductCard from "../components/ProductCard.vue";
+import ProductCard from "@/components/ProductCard.vue";
 export default {
   name: 'Home',
   created() {

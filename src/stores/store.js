@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import { ProductModel } from "../models/ProductModel";
+import { ProductModel } from "@/models/ProductModel";
 
 export const store = reactive({
     isConnected: false,

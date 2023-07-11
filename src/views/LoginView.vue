@@ -46,7 +46,7 @@
     </section>
 </template>
 <script>
-import { store } from '../stores/store';
+import { store } from '@/stores/store';
 export default {
     data() {
         return {
