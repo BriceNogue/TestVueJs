@@ -79,9 +79,8 @@
 </template>
 
 <script>
-import { store } from "../stores/store";
+import { store } from "@/stores/store";
 export default {
-  //name: 'Header',
   data() {
     return {
       //isCon: false,
