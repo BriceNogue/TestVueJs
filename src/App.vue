@@ -52,6 +52,9 @@ export default {
     },
     removeProduct(product) {
       store.cart.splice(store.cart.indexOf(product),1);
+    },
+    buyProduct() {
+      alert('Buy in cart ')
     }
 
     /*getStat() {
@@ -107,7 +110,7 @@ export default {
       </nav>
     </header>
 
-    <div class="card cart" v-show="isCartOpen">
+    <div class="card cart" :class="{'cart-close': !isCartOpen, 'cart-open': isCartOpen}" v-show="isCartOpen">
       <div class="card-header">
         <h5 class="card-title">{{ store.cart.length }} Prods</h5>
       </div>
@@ -129,7 +132,7 @@ export default {
         </div>
       </div>
       <div class="card-footer">
-        <b-button size="sm" class="mb-2 btn-cart" variant="primary" v-on:click.prevent="buyProduct(product)">
+        <b-button size="sm" class="mb-2 btn-cart" variant="primary" v-on:click.prevent="buyProduct()">
           <b-icon icon="cash-coin" aria-hidden="true"></b-icon> Bey Now
         </b-button>
       </div>
@@ -218,6 +221,29 @@ nav a.router-link-exact-active {
   position: absolute;
   right: 7%;
   z-index: 1;
+}
+.cart-open {
+  animation: scaleIn .5s;
+}
+.cart-close {
+  animation: scaleOut .5s;
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+@keyframes scaleOut {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(0);
+  }
 }
 
 .card-footer .btn-cart {
