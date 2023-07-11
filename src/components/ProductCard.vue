@@ -1,26 +1,39 @@
 <template>
-    <div class="products">
-        <div class="card" v-for="product in store.products" :key="product.id">
-            <div class="card-header">
-                <h5 class="card-title">{{ product.pName }}</h5>
+    <div>
+        <div class="form-group search">
+            <div class="col-8">
+                <label for="">Search</label>
+                <input type="search" class="form-control" name="" id="" aria-describedby="helpId"
+                    placeholder="Search product">
             </div>
-            <div class="card-body">
-                <img class="card-img" src="../assets/logo.svg" alt="Card image cap">
-                <div class="card-actions">
-                    <b-button size="sm" class="mb-2" variant="primary" v-on:click.prevent="buyProduct(product)">
-                        <b-icon icon="cash-coin" aria-hidden="true"></b-icon> Bey Now
-                    </b-button>
-                    <b-button size="sm" class="mb-2" variant="primary" @click.prevent="addToCart(product)">
-                        <b-icon-cart-plus></b-icon-cart-plus>Add To Cart
-                    </b-button>
-                </div>
+            <div class="col-2 nbr-prod">
+                <b-icon icon="search" aria-hidden="true"></b-icon>
+                <h5>Products</h5>
             </div>
-            <div class="card-footer" :class="{ outOfStock: product.qStock == 0 }">
-                <div>
-                    <h5>{{ product.price }}</h5>
+        </div>
+        <div class="products">
+            <div class="card" v-for="product in store.products" :key="product.id">
+                <div class="card-header">
+                    <h5 class="card-title">{{ product.pName }}</h5>
                 </div>
-                <div>
-                    <h5>{{ product.qStock }} P</h5>
+                <div class="card-body">
+                    <img class="card-img" src="../assets/logo.svg" alt="Card image cap">
+                    <div class="card-actions">
+                        <b-button size="sm" class="mb-2" variant="primary" v-on:click.prevent="buyProduct(product)">
+                            <b-icon icon="cash-coin" aria-hidden="true"></b-icon> Bey Now
+                        </b-button>
+                        <b-button size="sm" class="mb-2" variant="primary" @click.prevent="addToCart(product)">
+                            <b-icon-cart-plus></b-icon-cart-plus>Add To Cart
+                        </b-button>
+                    </div>
+                </div>
+                <div class="card-footer" :class="{ outOfStock: product.qStock == 0 }">
+                    <div>
+                        <h5>{{ product.price }}</h5>
+                    </div>
+                    <div>
+                        <h5>{{ product.qStock }} P</h5>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,10 +48,27 @@ export default {
     data() {
         return {
             store: store,
-            isOutOfStock: false,
         }
     },
+    mounted() {
+
+    },
+    computed: {
+
+    },
     methods: {
+        /*checkCart(product) {
+            store.cart.forEach(prod => {
+            if(prod.id === product.id){
+                console.log('True');
+                return true;
+            } else {
+                console.log('false');
+                return false;
+            }
+        })
+        },*/
+
         addToCart(product) {
             if (product.qStock > 0) {
                 store.cart.push(product)
@@ -53,14 +83,24 @@ export default {
                 alert(product.pName + " is out of stock!");
             }
         }
-    },
-    mounted() {
-        console.log(store.cart);
     }
 }
 </script>
 
 <style scoped>
+.search {
+  padding-top: 5%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.nbr-prod {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .products {
     padding-top: 5%;
     display: flex;
@@ -123,4 +163,5 @@ export default {
     .card-img {
         display: block;
     }
-}</style>
+}
+</style>

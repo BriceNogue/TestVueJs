@@ -34,17 +34,6 @@ export default {
       </div>
     </div>
 
-    <div class="form-group search">
-      <div class="col-8">
-        <label for="">Search</label>
-        <input type="search" class="form-control" name="" id="" aria-describedby="helpId" placeholder="Search product">
-      </div>
-      <div class="col-2 nbr-prod">
-        <b-icon icon="search" aria-hidden="true"></b-icon>
-        <h5>Products</h5>
-      </div>
-    </div>
-
     <div>
       <product-card></product-card>
     </div>
@@ -53,7 +42,7 @@ export default {
 
 <style scoped>
 main {
-  padding: 7%;
+  padding: 5% 7% 5% 7%;
 }
 .card-1 {
   padding: 0 10px 10px 10px;
@@ -77,18 +66,5 @@ main {
 
 .card-image {
   width: 100%;
-}
-.search {
-  padding-top: 5%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-}
-.nbr-prod {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
 }
 </style>

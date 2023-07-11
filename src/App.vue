@@ -5,6 +5,7 @@ export default {
     return {
       //isCon: false,
       store: store,
+      isCartOpen: false,
     }
   },
 
@@ -46,6 +47,12 @@ export default {
       //this.getStat();
       e.preventDefault();
     },
+    toggleCart() {
+      this.isCartOpen = !this.isCartOpen
+    },
+    removeProduct(product) {
+      store.cart.splice(store.cart.indexOf(product),1);
+    }
 
     /*getStat() {
       if (localStorage.getItem('connectedUser')) {
@@ -64,29 +71,29 @@ export default {
   <div id="app">
     <header>
       <nav class="navbar navbar-expand-sm navbar-light bg-light">
-        <a class="navbar-brand" href="#">TestVue2</a>
+        <a class="navbar-brand logo" href="#">E-Shop</a>
         <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
           aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="collapsibleNavId">
           <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-            <li class="nav-item active">
+            <li class="nav-item">
               <a class="nav-link">
                 <router-link to="/">Home</router-link>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" v-if="!store.isConnected">
+              <a class="nav-link btn-login" v-if="!store.isConnected">
                 <router-link to="login">Login</router-link>
               </a>
-              <a class="nav-link" v-else @click.prevent="logout">
+              <a class="nav-link btn-logout" v-else @click.prevent="logout">
                 <router-link to="login">Logout</router-link>
               </a>
             </li>
           </ul>
         </div>
-        <div class="cart">
+        <div class="cart-btn" @click="toggleCart()">
           <div>
             <b-icon icon="cart"></b-icon>
           </div>
@@ -100,19 +107,77 @@ export default {
       </nav>
     </header>
 
+    <div class="card cart" v-show="isCartOpen">
+      <div class="card-header">
+        <h5 class="card-title">{{ store.cart.length }} Prods</h5>
+      </div>
+      <div class="card-body">
+        <div class="card" v-for="prod in store.cart">
+          <div>
+            <div>
+              <strong>{{ prod.pName }}</strong>
+            </div>
+            <div>
+              <b>{{ prod.price }}</b>
+            </div>
+          </div>
+          <div class="card-actions">
+            <div>
+              <b-icon icon="cart-x" @click.prevent="removeProduct(prod)" class="cash-coin" aria-hidden="true"></b-icon>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer">
+        <b-button size="sm" class="mb-2 btn-cart" variant="primary" v-on:click.prevent="buyProduct(product)">
+          <b-icon icon="cash-coin" aria-hidden="true"></b-icon> Bey Now
+        </b-button>
+      </div>
+    </div>
+
     <router-view />
 
   </div>
 </template>
 
 <style scoped>
-nav {
-  padding: 0 7% 0 7%;
-}
-.cart {
+#app {
   position: relative;
 }
-.b-icon  {
+
+nav {
+  height: 60px;
+  padding: 0 7% 0 7%;
+}
+
+nav a.router-link-exact-active {
+  color: blue;
+  border: solid 1px;
+  padding: 5px 15px 5px 15px;
+  border-radius: 50px;
+}
+
+.logo {
+  color: gray;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.navbar-nav {
+  display: flex;
+  align-items: center;
+}
+
+.nav-item a {
+  text-decoration-line: none;
+  font-weight: 500;
+}
+
+.cart-btn {
+  position: relative;
+}
+
+.cart-btn .b-icon {
   margin-right: 30px;
   width: 35px;
   height: 35px;
@@ -123,7 +188,7 @@ nav {
   transition: ease 0.5s;
 }
 
-.cart:hover {
+.cart-btn:hover {
   scale: 1.1;
 }
 
@@ -135,6 +200,7 @@ nav {
   bottom: -1px;
   left: -10px;
 }
+
 .cart-number p {
   background-color: blue;
   width: 20px;
@@ -146,4 +212,54 @@ nav {
   display: flex;
   color: white;
 }
-</style>
+
+.cart {
+  width: 300px;
+  position: absolute;
+  right: 7%;
+  z-index: 1;
+}
+
+.card-footer .btn-cart {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 50px;
+  font-weight: bold;
+  padding: 10px 15px 10px 15px;
+}
+
+.card-body {
+  max-height: 300px;
+  overflow-x: hidden;
+}
+.cash-coin {
+  width: 30px;
+  height: 30px;
+  padding: 5px;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+}
+.cash-coin:hover {
+  background-color: #f8cbcb;
+}
+.card-body .card {
+  margin-bottom: 15px;
+  padding: 5px 15px 5px 15px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  transition: 0.5s;
+}
+.card-actions {
+  display: flex;
+  align-items: center;
+}
+
+.card-body .card:hover {
+  scale: 1.1;
+}</style>
