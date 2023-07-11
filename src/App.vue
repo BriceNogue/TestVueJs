@@ -48,7 +48,7 @@ export default {
       e.preventDefault();
     },
     toggleCart() {
-      this.isCartOpen = !this.isCartOpen
+      this.isCartOpen = !this.isCartOpen;
     },
     removeProduct(product) {
       store.cart.splice(store.cart.indexOf(product),1);
@@ -110,7 +110,7 @@ export default {
       </nav>
     </header>
 
-    <div class="card cart" :class="{'cart-close': !isCartOpen, 'cart-open': isCartOpen}" v-show="isCartOpen">
+    <div class="card cart" :class="{'cart-close': isCartOpen === false, 'cart-open': isCartOpen === true}">
       <div class="card-header">
         <h5 class="card-title">{{ store.cart.length }} Prods</h5>
       </div>
@@ -223,9 +223,12 @@ nav a.router-link-exact-active {
   z-index: 1;
 }
 .cart-open {
+  display: block;
   animation: scaleIn .5s;
 }
 .cart-close {
+  visibility: hidden;
+  transition: 0.3s;
   animation: scaleOut .5s;
 }
 
