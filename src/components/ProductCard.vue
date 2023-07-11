@@ -50,12 +50,6 @@ export default {
             store: store,
         }
     },
-    mounted() {
-
-    },
-    computed: {
-
-    },
     methods: {
         /*checkCart(product) {
             store.cart.forEach(prod => {
@@ -82,7 +76,12 @@ export default {
             } else {
                 alert(product.pName + " is out of stock!");
             }
-        }
+        },
+        /*filterProducts(keyword) {
+            return store.products.filter(prod => {
+                prod.pName.includes(keyword);
+            })
+        }*/
     }
 }
 </script>
