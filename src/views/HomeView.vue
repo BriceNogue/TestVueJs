@@ -1,25 +1,5 @@
-<script>
-import { store } from '../stores/store';
-
-import ProductCard from "../components/ProductCard.vue";
-export default {
-  data() {
-    return {
-      store: store,
-      products: store.products,
-    }
-  },
-  components: {
-    ProductCard
-  },
-  mounted() {
-    console.log('Home: ', this.products);
-  },
-}
-</script>
-
 <template>
-  <main>
+  <div class="Home">
     <div class="card card-1">
       <div class="col-6 card-action">
         <div class="col-12">
@@ -37,13 +17,39 @@ export default {
     <div>
       <product-card></product-card>
     </div>
-  </main>
+  </div>
 </template>
+
+<script>
+import LayoutDefault from '../layouts/LayoutDefault.vue';
+import { store } from '../stores/store';
+
+import ProductCard from "../components/ProductCard.vue";
+export default {
+  name: 'Home',
+  created() {
+    this.$emit('update:layout', LayoutDefault);
+  },
+  data() {
+    return {
+      store: store,
+      products: store.products,
+    }
+  },
+  components: {
+    ProductCard
+  },
+  mounted() {
+    console.log('Home: ', this.products);
+  },
+}
+</script>
 
 <style scoped>
 main {
   padding: 5% 7% 5% 7%;
 }
+
 .card-1 {
   padding: 0 10px 10px 10px;
   flex-direction: row;
