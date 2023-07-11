@@ -1,22 +1,24 @@
 <template>
   <div class="Home">
-    <div class="card card-1">
-      <div class="col-6 card-action">
-        <div class="col-12">
-          <h1>Welcome {{ store.connectedUser.firstname }} 🙂</h1>
+    <main>
+      <div class="card card-1">
+        <div class="col-6 card-action">
+          <div class="col-12">
+            <h1>Welcome {{ store.connectedUser.firstname }} 🙂</h1>
+          </div>
+          <div class="col-12">
+            <button type="button" class="btn btn-get btn-primary">Get your first gift</button>
+          </div>
         </div>
-        <div class="col-12">
-          <button type="button" class="btn btn-get btn-primary">Get your first gift</button>
+        <div class="col-6">
+          <img class="card-image" src="../assets/images/svg/undraw_gift_re_qr17.svg" alt="">
         </div>
       </div>
-      <div class="col-6">
-        <img class="card-image" src="../assets/images/svg/undraw_gift_re_qr17.svg" alt="">
-      </div>
-    </div>
 
-    <div>
-      <product-card></product-card>
-    </div>
+      <div>
+        <product-card></product-card>
+      </div>
+    </main>
   </div>
 </template>
 

@@ -7,6 +7,8 @@
 <script>
 export default {
   name: 'App',
+  components: {
+  },
   data() {
     return {
       layout: 'div',
@@ -15,6 +17,4 @@ export default {
 };
 </script>
 
-<style scoped>
-
-</style>
+<style scoped></style>

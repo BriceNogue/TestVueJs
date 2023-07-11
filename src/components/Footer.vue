@@ -1,11 +1,17 @@
 <template>
-    <div class="Footer">
-        <h1>Footer</h1>
-    </div>
+    <layout-footer>
+        <div class="Footer">
+            <h1>Footer</h1>
+        </div>
+    </layout-footer>
 </template>
 <script>
+import LayoutFooter from '../layouts/LayoutFooter.vue';
 export default {
-    name: 'Footer'  
+    //name: 'Footer',
+    components: {
+        LayoutFooter,
+    },
 }
 </script>
 <style lang="">
