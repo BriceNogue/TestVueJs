@@ -290,7 +290,6 @@ nav a.router-link-exact-active {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    transition: 0.5s;
 }
 
 .card-actions {
