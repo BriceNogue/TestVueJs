@@ -1,6 +1,9 @@
 <template>
     <div class="LayoutDefault">
-        <div class="Header">
+        <div class="header">
+            <header></header>
+        </div>
+        <!--<div class="Header">
             <header>
                 <nav class="navbar navbar-expand-sm navbar-light bg-light">
                     <a class="navbar-brand logo" href="#">E-Shop</a>
@@ -68,7 +71,7 @@
                     </b-button>
                 </div>
             </div>
-        </div>
+        </div>-->
         <main class="LayoutDefault__main">
             <slot />
         </main>
@@ -80,6 +83,7 @@
 
 <script>
 import { store } from "@/stores/store";
+import Header from "@/components/Header.vue"
 export default {
   data() {
     return {
@@ -87,6 +91,10 @@ export default {
       store: store,
       isCartOpen: false,
     }
+  },
+
+  components: {
+    Header,
   },
 
   mounted() {
