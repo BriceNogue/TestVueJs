@@ -1,5 +1,6 @@
 <template>
      <div class="Header">
+        <template>
             <header>
                 <nav class="navbar navbar-expand-sm navbar-light bg-light">
                     <a class="navbar-brand logo" href="#">E-Shop</a>
@@ -38,7 +39,7 @@
                     </div>
                 </nav>
             </header>
-
+            
             <div class="card cart" :class="{ 'cart-close': isCartOpen === false, 'cart-open': isCartOpen === true }">
                 <div class="card-header">
                     <h5 class="card-title">{{ store.cart.length }} Prods</h5>
@@ -67,6 +68,8 @@
                     </b-button>
                 </div>
             </div>
+        </template>
+        
         </div>
 </template>
 

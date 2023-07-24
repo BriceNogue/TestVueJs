@@ -1,5 +1,6 @@
 <template>
-  <component :is="layout">
+  <!---<component :is="layout">-->
+  <component :is="this.$route.meta.layout || 'div'">
     <router-view :layout.sync="layout" />
   </component>
 </template>

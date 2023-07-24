@@ -37,6 +37,9 @@
                 </div>
             </div>
         </div>
+        <slot name="nomSlot">
+
+        </slot>
     </div>
 </template>
 

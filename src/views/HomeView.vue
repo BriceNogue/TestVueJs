@@ -16,22 +16,29 @@
       </div>
 
       <div>
-        <product-card></product-card>
+        <product-card>
+          <template #nomSlot>
+             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vel, nesciunt omnis sint nemo neque velit minus sequi distinctio natus reiciendis fuga adipisci dolorum, expedita earum ab dolorem. Delectus, aspernatur modi!</p>
+          </template>
+          <div>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ea explicabo quisquam ex, odit provident neque assumenda corrupti modi fuga adipisci. Et, aliquid! Quas ipsam et vitae deleniti asperiores, eius perspiciatis.</p>
+          </div>
+        </product-card>
       </div>
     </main>
   </div>
 </template>
 
 <script>
-import LayoutDefault from '@/layouts/LayoutDefault.vue';
+//import LayoutDefault from '@/layouts/LayoutDefault.vue';
 import { store } from '@/stores/store';
 
 import ProductCard from "@/components/ProductCard.vue";
 export default {
   name: 'Home',
-  created() {
+  /*created() {
     this.$emit('update:layout', LayoutDefault);
-  },
+  },*/
   data() {
     return {
       store: store,
