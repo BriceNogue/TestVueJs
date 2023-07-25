@@ -17,7 +17,7 @@
                     <h5 class="card-title">{{ product.pName }}</h5>
                 </div>
                 <div class="card-body">
-                    <img class="card-img" src="../assets/logo.svg" alt="Card image cap">
+                    <img class="card-img" src="@/assets/logo.svg" alt="Card image cap">
                     <div class="card-actions">
                         <b-button size="sm" class="mb-2" variant="primary" v-on:click.prevent="buyProduct(product)">
                             <b-icon icon="cash-coin" aria-hidden="true"></b-icon> Bey Now
@@ -44,8 +44,8 @@
 </template>
 
 <script>
-import { ProductModel } from '../models/ProductModel';
-import { store } from '../stores/store';
+import { ProductModel } from '../../models/ProductModel';
+import { store } from '../../stores/store';
 
 export default {
     data() {

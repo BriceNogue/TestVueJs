@@ -33,7 +33,7 @@
 //import LayoutDefault from '@/layouts/LayoutDefault.vue';
 import { store } from '@/stores/store';
 
-import ProductCard from "@/components/ProductCard.vue";
+import ProductCard from "@/components/eshop/ProductCard.vue";
 export default {
   name: 'Home',
   /*created() {

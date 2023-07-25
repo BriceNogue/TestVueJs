@@ -23,6 +23,11 @@
                 </a>
               </li>
               <li class="nav-item">
+                <a class="nav-link">
+                  <router-link to="booking">Booking</router-link>
+                </a>
+              </li>
+              <li class="nav-item">
                 <a class="nav-link btn-login" v-if="!store.isConnected">
                   <router-link to="login">Login</router-link>
                 </a>
