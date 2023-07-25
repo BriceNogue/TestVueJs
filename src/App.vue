@@ -8,11 +8,10 @@
 <script>
 export default {
   name: 'App',
-  components: {
-  },
+  components: {},
   data() {
     return {
-      layout: 'div',
+      layout: "div",
     };
   },
 };
